@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { UserService } from '../user.service';
 import { Observable } from 'rxjs/internal/Observable';
-=======
-import { UserService } from '../services/user.service';
-import { User, Auth } from '../models/user';
-
->>>>>>> b28f725d205496986347b01a5f7aa53f867b9627
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-signup',
@@ -19,13 +14,9 @@ export class SignupComponent implements OnInit {
   loading: Boolean;
   result: String;
 
-<<<<<<< HEAD
-  constructor(userService: UserService) {
+  constructor(private userService: UserService) {
 
   }
-=======
-  constructor(private userService: UserService) {}
->>>>>>> b28f725d205496986347b01a5f7aa53f867b9627
 
   ngOnInit() {
     this.user = {
@@ -39,7 +30,7 @@ export class SignupComponent implements OnInit {
   signup(): void {
     if (this.user) {
       this.loading = true;
-      this.userService.signup(this.user)
+      this.userService.signup(this.user.username, this.user.password, this.user.email)
         .subscribe(auth => {
           console.log(auth);
           this.loading = false;
@@ -50,7 +41,5 @@ export class SignupComponent implements OnInit {
       }
   }
 
-  signup(): void {
-    this.userService.signup(this.username, this.password, this.email).pipe()
-  }
+
 }
