@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-signup',
@@ -11,8 +13,14 @@ export class SignupComponent implements OnInit {
   password: string;
   email: string;
 
-  constructor() { }
+  constructor(userService: UserService) {
+
+  }
 
   ngOnInit() {
+  }
+
+  signup(): void {
+    this.userService.signup(this.username, this.password, this.email).pipe()
   }
 }
