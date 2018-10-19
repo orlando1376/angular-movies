@@ -4,43 +4,40 @@ import { Observable } from 'rxjs/internal/Observable';
 import { User } from '../models/user';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 
-export class SignupComponent implements OnInit {
-
+export class LoginComponent implements OnInit {
   user: User;
   loading: Boolean;
   result: String;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService) { 
 
   }
 
   ngOnInit() {
     this.user = {
       username: '',
-      password: '',
-      email: ''
+      password: ''
     }
-    this.loading = false;
   }
 
-  signup(): void {
+  login(): void {
+    console.log('Ya llegué');
     if (this.user) {
       this.loading = true;
-      this.userService.signup(this.user)
+      this.userService.login(this.user)
         .subscribe(auth => {
           console.log(auth);
           this.loading = false;
         }, error => {
-          this.result = 'No fue posible crear el usuario. Por favor intente más tarde.';
+          this.result = 'No fue posible logearse. Por favor intente más tarde.';
           console.log(error);
         });
       }
   }
-
 
 }

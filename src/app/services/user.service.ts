@@ -11,6 +11,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
 
   apiURL: string = 'https://angular-movies-backend.herokuapp.com/';
@@ -25,6 +26,16 @@ export class UserService {
     );
   }
 
+  
+login(user: User): Observable<Auth> {
+  return this.http.post<User>(this.apiURL + 'auth/local', {
+  identifier: user.username,
+  password: user.password
+  }, httpOptions).pipe(tap((auth: Auth) => this.log(`Logged in as user w/ id=${auth.user._id}`)),
+  catchError(this.handleError<Auth>('login'))
+  );
+  }
+  
   /**
    * Handle Http operation that failed.
    * Let the app continue.

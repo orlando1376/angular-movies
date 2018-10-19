@@ -1,20 +1,13 @@
 <app-header></app-header>
 <main class="container container_one">
   <div class="container__inner">
-    <form class="form form_centered" (ngSubmit)="signupForm.valid && signup()" #signupForm>
-      <h2 class="container__title">Create a new account</h2>
+    <form class="form form_centered" (ngSubmit)="signupForm.valid && login()" #signupForm>
+      <h2 class="container__title">Login</h2>
       <div class="form__row">
         <label class="form__label" for="username">Username</label>
         <input required class=form__input type="text" id="username" [(ngModel)]="user.username" name="username" #username>
         <p class="form__error" *ngIf="!username.invalid">
           Username is required
-        </p>
-      </div>
-      <div class="form__row">
-        <label class="form__label" for="email">Email</label>
-        <input required class=form__input type="text" id="email" [(ngModel)]="user.email" name="email" #email>
-        <p class="form__error" *ngIf="!email.invalid">
-          Email is required
         </p>
       </div>
       <div class="form__row">
@@ -24,7 +17,7 @@
           Password is required
         </p>
       </div>
-      <button [disabled]="!signupForm.valid || this.loading" type="submit" class="btn btn_block" [class.btn_loading]="loading">Crear cuenta</button>
+      <button [disabled]="!signupForm.valid || this.loading" type="submit" class="btn btn_block" [class.btn_loading]="loading" (click)="login()">Iniciar sesion</button>
     </form>
   </div>
 </main>
